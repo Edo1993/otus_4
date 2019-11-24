@@ -1,5 +1,6 @@
 # otus_4
 Загрузка системы
+
    Задание:
     
      - Попасть в систему без пароля несколькими способами
@@ -34,3 +35,16 @@ touch /.autorelabel
 ```
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/4.png)
 После чего можно перезагружаться и заходить в систему с новым паролем.
+
+  1.3 ```init=/bin/sh```
+  
+В конце строки начинающейся с linux16 удаляем параметр ```console=ttS0,115200n8```, добавляем ```init=/bin/sh```,
+нажимаем сtrl-x для загрузки в систему
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/s1.png)
+Рутовая файловая система при этом монтируется в режиме Read-Only.
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/s2.png)
+Если вы хотите перемонтировать ее в режим Read-Write можно воспользоваться командой:
+mount -o remount,rw /
+После чего можно убедиться записав данные в любой файл или прочитав вывод команды:
+mount | grep root
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/s3.png)
