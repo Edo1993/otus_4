@@ -112,7 +112,7 @@ dracut -f -v
 lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
 ```
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/32.png)
-После чего можно пойти двумя путями для проверки:○Перезагрузиться и руками выключить опции  и увидеть вывод○Либо Отредактируем grub.cfg убрав эти опции:```rghb, quiet```
+Отредактируем grub.cfg убрав эти опции:```rghb, quiet```
 Для редактирования
 ```
 vim /etc/default/grub
