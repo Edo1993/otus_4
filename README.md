@@ -48,3 +48,25 @@ mount -o remount,rw /
 После чего можно убедиться записав данные в любой файл или прочитав вывод команды:
 mount | grep root
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/s3.png)
+
+
+2. Установить систему с LVM, после чего переименовать VG
+
+Первым делом посмотрим текущее состояние системы (нас интересует вторая строка с именем Volume Group):
+```
+vgs
+```
+Приступим к переименованию:
+```
+vgrename VolGroup00 OtusRoot
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/21.png)
+
+Далее правим /etc/fstab, /etc/default/grub, /boot/grub2/grub.cfg.
+```
+vim /etc/fstab
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/22.png)
+```
+vim /etc/default/grub
+```
