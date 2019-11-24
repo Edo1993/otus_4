@@ -87,3 +87,6 @@ mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
 vgs
 ```
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/25.png)
+
+
+3. Добавить модуль в initrd
