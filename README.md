@@ -53,7 +53,7 @@ mount | grep root
 2. Установить систему с LVM, после чего переименовать VG
 
 Пункты 2 и 3 были записаны с помощью утилиты script, можно проверить 
-[тут](https://github.com/Edo1993/otus_4/blob/master/homework4.log)
+[тут](https://github.com/Edo1993/otus_4/blob/master/homework4.txt)
 
 Первым делом посмотрим текущее состояние системы (нас интересует вторая строка с именем Volume Group):
 ```
@@ -113,6 +113,7 @@ dracut -f -v
 lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
 ```
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/32.png)
+
 Отредактируем grub.cfg убрав эти опции:```rghb, quiet```
 Для редактирования
 ```
