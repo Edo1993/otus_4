@@ -52,6 +52,8 @@ mount | grep root
 
 2. Установить систему с LVM, после чего переименовать VG
 
+Пункты 2 и 3 были записаны с помощью утилиты script, можно проверить [тут](https://gist.github.com/lalbrekht/e51b2580b47bb5a150bd1a002f16ae85)
+
 Первым делом посмотрим текущее состояние системы (нас интересует вторая строка с именем Volume Group):
 ```
 vgs
@@ -90,3 +92,32 @@ vgs
 
 
 3. Добавить модуль в initrd
+В каталоге с скриптами модулей создаем папку с именем 01test:
+```
+mkdir /usr/lib/dracut/modules.d/01test
+```
+В нее помещаем два скрипта:
+
+1.[module-setup.sh](https://gist.github.com/lalbrekht/e51b2580b47bb5a150bd1a002f16ae85) - который устанавливает модуль и вызывает скрипт test.sh
+
+2.[test.sh](https://gist.github.com/lalbrekht/ac45d7a6c6856baea348e64fac43faf0) - собственно сам вызываемый скрипт, в нём у нас рисуется пингвинчик
+
+Пересобираем образ initrd
+```
+dracut -f -v
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/31.png)
+Можно проверить/посмотреть какие модули загружены в образ:
+```
+lsinitrd -m /boot/initramfs-$(uname -r).img | grep test
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/32.png)
+После чего можно пойти двумя путями для проверки:○Перезагрузиться и руками выключить опции  и увидеть вывод○Либо Отредактируем grub.cfg убрав эти опции:```rghb, quiet```
+Для редактирования
+```
+vim /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+
+В итоге при загрузке будет пауза на 10 секунд и пингвин в выводе терминала ^__^
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/33.png)
