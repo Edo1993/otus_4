@@ -20,3 +20,17 @@
 Файловая система сразу смонтирована в режим Read-Write
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/sysr2.png)
 ![Image alt](https://github.com/Edo1993/otus_4/raw/master/sysr3.png)
+  1.2 ```rd.break```
+  
+В конце строки начинающейся с linux16 добавляем ```rd.break console=tty1``` и нажимаем сtrl-x для загрузки в систему.
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/2.png)
+Попадаем в emergency mode. Корневая файловая система смонтирована. Попасть в нее и поменять пароль администратора:
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/3.png)
+```
+mount -o remount,rw /sysroot
+chroot /sysroot
+passwd
+touch /.autorelabel
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/4.png)
+После чего можно перезагружаться и заходить в систему с новым паролем.
