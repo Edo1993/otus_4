@@ -70,3 +70,20 @@ vim /etc/fstab
 ```
 vim /etc/default/grub
 ```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/23.png)
+Для правки /boot/grub2/grub.cfg используем sed
+```
+cat /boot/grub2/grub.cfg | grep VolGroup00
+sed -i 's/VolGroup00/OtusRoot/g' /boot/grub2/grub.cfg
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/24.png)
+Пересоздаем initrd image, чтобы он знал новое название Volume Group:
+```
+mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/26.png)
+После чего можем перезагружаемся с новым именем Volume Group и проверяем
+```
+vgs
+```
+![Image alt](https://github.com/Edo1993/otus_4/raw/master/25.png)
